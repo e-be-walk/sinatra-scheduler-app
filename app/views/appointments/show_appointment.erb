@@ -1,0 +1,9 @@
+<h1>Here's your appointment:</h1>
+<br></br>
+  <h2><%= @appointment.content %></h2>
+  <br></br>
+  <h2><a href="/appointments/<%= @appointment.id %>/edit">Edit this appointment</a></h2>
+  <form action="/appointments/<%= @appointment.id %>/delete" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete this Appointment" id="delete">
+  </form>
