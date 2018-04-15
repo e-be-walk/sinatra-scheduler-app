@@ -8,15 +8,13 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    @user = User.new(params)
-
-    if @user.username == "" || @user.email = ""
-      redirect '/signup'
-    elsif @user.save
-      session[:id] = user.id
-      redirect '/scheduler'
+    if params[:username] == "" || params[:email] == "" || params[:password] == ""
+      redirect to '/signup'
     else
-      redirect '/signup'
+      @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+      @user.save
+      session[:user_id] = @user.id
+      redirect to '/users/show'
     end
   end
 
@@ -45,5 +43,5 @@ class UsersController < ApplicationController
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
     erb :'/users/show'
-  end 
+  end
 end
