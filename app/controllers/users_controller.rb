@@ -19,25 +19,28 @@ class UsersController < ApplicationController
     else
       @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
       @user.save
-      session[:user_id] = @user.id
+      session[:id] = @user.id
       redirect to "/users/#{@user.username}"
     end
   end
 
   get '/login' do
-    if logged_in?
-      redirect "/appointments"
+    if !logged_in?
+      erb :'/users/login'
+    else
+      redirect '/appointments'
     end
-    erb :'/users/login'
   end
 
   post '/login' do
     @user = User.find_by(:username => params[:username])
+    #binding.pry
     if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-      redirect "/appointments"
+      session[:id] = @user.id
+      redirect to "/users/#{@user.username}"
+      #redirect "/appointments"
     else
-      redirect '/login'
+      redirect '/signup'
     end
   end
 
