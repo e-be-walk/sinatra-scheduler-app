@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     else
       @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
       @user.save
-      session[:id] = @user.id
+      session[:user_id] = @user.id
       redirect to "/users/#{@user.username}"
     end
   end
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     @user = User.find_by(:username => params[:username])
     #binding.pry
     if @user && @user.authenticate(params[:password])
-      session[:id] = @user.id
+      session[:user_id] = @user.id
       redirect to "/users/#{@user.username}"
       #redirect "/appointments"
     else
