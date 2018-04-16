@@ -4,7 +4,7 @@ class AppointmentsController < ApplicationController
     if !logged_in?
       redirect '/login'
     end
-    erb :'/appointments/create_appointment'
+    erb :'/appointments/create_new'
   end
 
   get '/appointments' do
@@ -12,7 +12,8 @@ class AppointmentsController < ApplicationController
       redirect '/login'
     else
       @user = current_user
-      erb :'/appointments/appointments'
+      redirect to "/users/#{@user.username}"
+      #erb :'/appointments/appointments'
     end
   end
 
@@ -27,7 +28,34 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  delete '/tweets/:id/delete' do
+  get '/appointments/:id' do
+    if !logged_in?
+      redirect '/login'
+    end
+    @appointment = Appointment.find(params[:id])
+    erb :'/appointment/show_appointment'
+  end
+
+  get '/appointments/:id/edit' do
+    if !logged_in?
+      redirect '/login'
+    end
+    @appointment = Appointment.find(params[:id])
+    erb :'/appointments/edit_appointment'
+  end
+
+  patch '/appointments/:id' do
+    @appointment = Appointment.find(params[:id])
+    if params[:appointment][:content].empty?
+      redirect "/appointments/#{@appointment.id}/edit"
+    else
+      @appointment.update(params[:appointment])
+      @appointment.save
+      redirect "/appointments/#{@appointment.id}"
+    end
+  end
+
+  delete '/appointments/:id/delete' do
     @appointment = Appointment.find(params[:id])
     if @appointment.id == current_user.id
       @appointment.delete
