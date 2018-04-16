@@ -1,19 +1,22 @@
 class AppointmentsController < ApplicationController
 
-  get '/appointments/new' do
-    if !logged_in?
-      redirect '/login'
+  get '/appointments' do
+    if logged_in?
+      @appointments = Appointment.all
+      erb :'/appointments/appointments'
+    else
+      redirect to '/login'
+      #@user = current_user
+      #redirect to "/users/#{@user.username}"
+      #erb :'/appointments/appointments'
     end
-    erb :'/appointments/create_new'
   end
 
-  get '/appointments' do
-    if !logged_in?
-      redirect '/login'
+  get '/appointments/new' do
+    if logged_in?
+      erb :'appointments/create_new'
     else
-      @user = current_user
-      redirect to "/users/#{@user.username}"
-      #erb :'/appointments/appointments'
+      redirect to '/login'
     end
   end
 
