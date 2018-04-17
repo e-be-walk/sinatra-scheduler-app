@@ -3,7 +3,12 @@
 <form action="/appointments/<%= @appointment.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <h2><%= @appointment.content %></h2>
-  <input type="text" name="appointment[content]" value="<%= @appointment.content" id="content">
+  <input type="text" name="appointment[content]" value="<%= @appointment.content %>" id="content">
   <br></br>
-  <input type="submit" name="submit" value="Submit Edits"> 
+  <input type="submit" name="submit" value="Submit Edits">
+</form>
+
+<form action="/appointments/<%= @appointment.id %>/delete" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete this Appointment" id="delete">
 </form>

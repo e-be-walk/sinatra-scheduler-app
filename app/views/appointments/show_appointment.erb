@@ -2,6 +2,7 @@
 <br></br>
   <h2><%= @appointment.content %></h2>
   <br></br>
+  <h2>Go back to <a href="/">Scheduler</a></h2>
   <h2><a href="/appointments/<%= @appointment.id %>/edit">Edit this appointment</a></h2>
   <form action="/appointments/<%= @appointment.id %>/delete" method="post">
     <input type="hidden" name="_method" value="delete">

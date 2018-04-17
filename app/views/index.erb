@@ -1,3 +1,13 @@
 <h1>Welcome to Scheduler</h1>
 <br></br>
-<h2>Please <a href="/login">Log In</a> or <a href="/signup">Sign Up</a>.</h2>
+  <% if logged_in? %>
+  <h2>Here are your tasks, <%= current_user.username %>:</h2>
+  <% @appointments = current_user.appointments %>
+  <% @appointments.each do |appointment| %>
+  <h3><%= "#{appointment.datetime}"%> <%= "#{appointment.content}" %>  <a href="/appointments/<%= appointment.id %>/edit">Edit or Delete</a> this Appointment</h3>
+  <% end %>
+  <br></br>
+  <h2><a href="/appointments/new">Create</a> a new task.</h2>
+<% else %>
+  <h2>Please <a href="/login">Log In</a> or <a href="/signup">Sign Up</a>.</h2>
+<% end %>
