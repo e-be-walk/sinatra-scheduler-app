@@ -2,6 +2,8 @@
 <br></br>
 <form action="/appointments/<%= @appointment.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
+  <h2><%= @appointment.datetime %></h2>
+  <input type="text" name="appointment[datetime]" value="<%= @appointment.datetime %>" id="datetime">
   <h2><%= @appointment.content %></h2>
   <input type="text" name="appointment[content]" value="<%= @appointment.content %>" id="content">
   <br></br>
