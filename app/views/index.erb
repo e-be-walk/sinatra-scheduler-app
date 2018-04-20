@@ -10,11 +10,11 @@
   <h2><a href="/appointments/new">Create</a> a new task.</h2>
   <br></br>
   <h2>Here is your to-do list:</h2>
-  <!---<% @todos = current_user.todos %>
+  <% @todos = current_user.todos %>
   <% @todos.each do |todo| %>
-  <h3><%= "#{todo.name}" %></h3>
+  <li><%= "#{todo.name}" %></li>
   <% end %>
-  <h2><a href="/todos/edit">Edit</a> your to-do list.</h2>--->
+  <h2><a href="/todos/new">Create</a> or<a href="/todos/edit">Edit</a> your to-do list.</h2>
 <% else %>
   <h2>Please <a href="/login">Log In</a> or <a href="/signup">Sign Up</a>.</h2>
 <% end %>
