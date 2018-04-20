@@ -5,12 +5,14 @@ class TodosController < ApplicationController
     erb :'/todos/show_todos'
   end
 
-  get 'todos/new' do
+  get '/todos/new' do
     erb :'/todos/create_new'
   end
 
   post '/todos' do
-    if !params[:todo][:content].empty?
+    @todo = Todo.create(params[:todo])
+    #binding.pry
+    if !params["todo"]["name"].empty?
       @todo = Todo.create(params[:todo])
       @todo.user_id = current_user.id
       @todo.save
