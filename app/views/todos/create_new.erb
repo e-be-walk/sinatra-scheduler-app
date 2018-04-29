@@ -5,6 +5,12 @@
   <input type="text" name="todo[name]" id="todo_name">
   <br></br>
 
+  <h1>Or Choose an existing task:</h1>
+    <% Todo.all.each do |todo| %>
+    <input type="checkbox" name="todo[user_id]" value="<%= current_user.id %>"><%= todo.name %></input>
+    <% end %>
+    <br></br>
+
 
   <input type="submit" name="submit" value="Create To-do list">
 

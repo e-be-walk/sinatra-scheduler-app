@@ -9,6 +9,10 @@ class TodosController < ApplicationController
     erb :'/todos/create_new'
   end
 
+  get '/todos/edit' do
+    erb :'/todos/edit'
+  end
+
   post '/todos' do
     @todo = Todo.create(params[:todo])
     #binding.pry
