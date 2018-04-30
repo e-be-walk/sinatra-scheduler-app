@@ -6,9 +6,6 @@ class AppointmentsController < ApplicationController
       erb :'/appointments/appointments'
     else
       redirect to '/login'
-      #@user = current_user
-      #redirect to "/users/#{@user.username}"
-      #erb :'/appointments/appointments'
     end
   end
 

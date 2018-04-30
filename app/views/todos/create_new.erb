@@ -1,17 +1,13 @@
 
-<h1>Enter a new task:</h1>
+<h1>Add a new task to your to-do list:</h1>
 <form action="/todos" method="post">
   <br></br>
   <input type="text" name="todo[name]" id="todo_name">
   <br></br>
-
-  <h1>Or Choose an existing task:</h1>
-    <% Todo.all.each do |todo| %>
-    <input type="checkbox" name="todo[user_id]" value="<%= current_user.id %>"><%= todo.name %></input>
-    <% end %>
-    <br></br>
-
-
-  <input type="submit" name="submit" value="Create To-do list">
+  <h2>Your to-do list is a great place to keep track of un-timed tasks and chores.
+  If you're happy with what's in your list, click submit- you'll be given the chance
+  to add more and edit this entry on the next page.</h2>
+  <br></br>
+  <input type="submit" name="submit" value="Add Task">
 
 </form>
