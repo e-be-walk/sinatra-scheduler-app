@@ -4,7 +4,7 @@
   <h2>Here are your tasks, <%= current_user.username %>:</h2>
   <% @appointments = current_user.appointments %>
   <% @appointments.each do |appointment| %>
-  <ol><%= "#{appointment.datetime}"%> <%= "#{appointment.content}" %>  <a href="/appointments/<%= appointment.id %>/edit">Edit or Delete</a> this Appointment</ol>
+  <li><%= "#{appointment.datetime}"%> <%= "#{appointment.content}" %> <a href="/appointments/<%= appointment.id %>/edit">Edit or Delete</a> this Appointment</li>
   <% end %>
   <br></br>
   <h2><a href="/appointments/new">Create</a> a new task.</h2>
