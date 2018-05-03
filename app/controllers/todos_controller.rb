@@ -11,7 +11,7 @@ class TodosController < ApplicationController
 
   get '/todos/edit' do
     erb :'/todos/edit'
-  end 
+  end
 
   post '/todos' do
     @todo = Todo.create(params[:todo])
@@ -23,6 +23,17 @@ class TodosController < ApplicationController
       erb :'/todos/show_todos'
     else
       redirect '/todos/new'
+    end
+  end
+
+  patch '/todos' do
+    @todo = Todo.find(params[:todo])
+    if params["todo"]["name"].empty? || checkbox.empty?
+      redirect "/todos/new"
+    else
+      @todo.update(params[:todo])
+      @todo.save
+      erb :'/todos/show_todos'
     end
   end
 
