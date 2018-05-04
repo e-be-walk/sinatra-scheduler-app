@@ -6,7 +6,7 @@
 
   <% Todo.all.each do |todo| %>
   <li>
-  <%= todo.name %>   <input type=“hidden” name=“_method” value=<%= todo.name %>></input></li>
+  <%= todo.name %>   <input type=“hidden” name=“_method” value="<%= todo.name %>"></input></li>
   <% end %>
   <br></br>
   <h2>Or Create a New Entry for your To-Do List:</h2>

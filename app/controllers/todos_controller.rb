@@ -10,6 +10,10 @@ class TodosController < ApplicationController
   end
 
   get '/todos/edit' do
+    if !logged_in?
+      redirect '/'
+    end
+    @todo = Todo.find_by(params[:user])
     erb :'/todos/edit'
   end
 
