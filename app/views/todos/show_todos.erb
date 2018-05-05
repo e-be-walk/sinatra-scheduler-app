@@ -1,3 +1,8 @@
+<nav>
+  <a href="/">Scheduler</a>
+  <a href="/logout">Logout</a>
+</nav>
+<br></br>
 <h1>Here's your To Do List:</h1>
   <br></br>
     <% @todos = current_user.todos %>
@@ -9,5 +14,3 @@
 <h2>Add a <a href="/todos/new">new</a> task.</h2>
 
 <h2>Return to <a href="/todos/edit">edit</a> your to-do list.</h2>
-
-<h2>Go back to your <a href="/">Scheduler</a></h2>

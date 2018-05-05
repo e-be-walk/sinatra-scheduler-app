@@ -21,3 +21,10 @@ body {
   color: #331a00;
   font-family: 'Indie Flower', cursive;
 }
+
+nav {
+  float: right;
+  font-size: 20px;
+  color: #331a00;
+  font-family: 'Lato', sans-serif;
+}
