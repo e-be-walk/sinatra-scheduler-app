@@ -1,21 +1,12 @@
 class TodosController < ApplicationController
 
   get '/todos' do
-    @todos = Todo.all
+    @user = current_user
     erb :'/todos/show_todos'
   end
 
   get '/todos/new' do
     erb :'/todos/create_new'
-  end
-
-  get '/todos/edit' do
-    if !logged_in?
-      redirect '/'
-    else
-      @user = current_user
-      erb :'/todos/edit'
-    end
   end
 
   post '/todos' do
@@ -31,24 +22,30 @@ class TodosController < ApplicationController
     end
   end
 
-  patch '/todos' do
-    @todo = Todo.find_by(params[:id])
-    if params["todo"]["name"].empty?
-      redirect "/todos/new"
+  get '/todos/:id/edit' do
+    if !logged_in?
+      redirect '/'
     else
-      @todo.update(params[:todo])
-      @todo.save
-      erb :'/todos/show_todos'
+      @todo = Todo.find(params[:id])
+      erb :'/todos/edit'
     end
   end
 
-  delete '/todos/delete' do
-    @todo = Todo.find_by(params[:user_id])
-
-    if @todo.id == current_user.id
-    @todo.delete
-    #binding.pry
+  patch '/todos/:id' do
+    @todo = Todo.find(params[:id])
+    @todo.update(params[:todo])
+    @todo.save
+    erb :'/todos/show_todos'
   end
-    redirect "/todos"
+
+  delete '/todos/:id/delete' do
+    @todo = Todo.find_by_id(params[:id])
+    if logged_in?
+      @todo = Todo.find_by_id(params[:id])
+      @todo.delete
+      redirect to '/'
+    else
+      redirect to '/login'
+    end
   end
 end

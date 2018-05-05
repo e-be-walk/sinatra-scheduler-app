@@ -7,14 +7,14 @@
   <li><%= "#{appointment.datetime}"%> <%= "#{appointment.content}" %> <a href="/appointments/<%= appointment.id %>/edit">Edit or Delete</a> this Appointment</li>
   <% end %>
   <br></br>
-  <h2><a href="/appointments/new">Create</a> a new task.</h2>
+  <h2><a href="/appointments/new">Create</a> a new appointment.</h2>
   <br></br>
   <h2>Here is your to-do list:</h2>
   <% @todos = current_user.todos %>
   <% @todos.each do |todo| %>
-  <li><%= "#{todo.name}" %></li>
+  <li><%= "#{todo.name}" %></li> <a href="/todos/<%= todo.id %>/edit">Mark this task complete</a></li>
   <% end %>
-  <h2><a href="/todos/new">Create</a> or<a href="/todos/edit"> Edit</a> your to-do list.</h2>
+  <h2><a href="/todos/new">Create</a> a new task for your to-do list.</h2>
 <% else %>
   <h2>Please <a href="/login">Log In</a> or <a href="/signup">Sign Up</a>.</h2>
 <% end %>
