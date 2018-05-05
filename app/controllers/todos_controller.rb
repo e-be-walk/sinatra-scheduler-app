@@ -12,9 +12,10 @@ class TodosController < ApplicationController
   get '/todos/edit' do
     if !logged_in?
       redirect '/'
+    else
+      @user = current_user
+      erb :'/todos/edit'
     end
-    @todo = Todo.find_by(params[:user])
-    erb :'/todos/edit'
   end
 
   post '/todos' do
@@ -31,8 +32,8 @@ class TodosController < ApplicationController
   end
 
   patch '/todos' do
-    @todo = Todo.find(params[:todo])
-    if params["todo"]["name"].empty? || checkbox.empty?
+    @todo = Todo.find_by(params[:user_id])
+    if params["todo"]["name"].empty?
       redirect "/todos/new"
     else
       @todo.update(params[:todo])
@@ -41,5 +42,12 @@ class TodosController < ApplicationController
     end
   end
 
-
+  delete '/todos/delete' do
+    @todo = Todo.find_by(params[:id])
+    if @todo.id == current_user.id
+    @todo.delete
+    #binding.pry
+  end
+    erb :'/todos/show_todos'
+  end
 end

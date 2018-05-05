@@ -4,9 +4,15 @@
   <h2>Select or Deselect from your present to-do list.<br></br>
     Checked entries will remain on your list and unchecked items will be removed.</h2>
 
-  <% Todo.all.each do |todo| %>
+    <% @todos = current_user.todos %>
+    <% @todos.each do |todo| %>
   <li>
-  <%= todo.name %>   <input type=“hidden” name=“_method” value="<%= todo.name %>"></input></li>
+  <%= todo.name %>
+  <form action="/todos/delete" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Mark Complete" id="delete">
+  </form>
+  </li>
   <% end %>
   <br></br>
   <h2>Or Create a New Entry for your To-Do List:</h2>
