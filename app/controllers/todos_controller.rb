@@ -32,7 +32,7 @@ class TodosController < ApplicationController
   end
 
   patch '/todos' do
-    @todo = Todo.find_by(params[:user_id])
+    @todo = Todo.find_by(params[:id])
     if params["todo"]["name"].empty?
       redirect "/todos/new"
     else
@@ -43,11 +43,12 @@ class TodosController < ApplicationController
   end
 
   delete '/todos/delete' do
-    @todo = Todo.find_by(params[:id])
+    @todo = Todo.find_by(params[:user_id])
+
     if @todo.id == current_user.id
     @todo.delete
     #binding.pry
   end
-    erb :'/todos/show_todos'
+    redirect "/todos"
   end
 end
