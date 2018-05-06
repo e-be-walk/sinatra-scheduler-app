@@ -8,6 +8,7 @@
   <% if logged_in? %>
   <h2>Here are your tasks, <%= current_user.username %>:</h2>
   <% @appointments = current_user.appointments %>
+  <% @appointments.sort_by %>
   <% @appointments.each do |appointment| %>
   <li><%= "#{appointment.datetime}"%> <%= "#{appointment.content}" %> <a href="/appointments/<%= appointment.id %>/edit">Edit or Delete</a> this Appointment</li>
   <% end %>
@@ -17,8 +18,9 @@
   <h2>Here is your to-do list:</h2>
   <% @todos = current_user.todos %>
   <% @todos.each do |todo| %>
-  <li><%= "#{todo.name}" %> <a href="/todos/<%= todo.id %>/edit">Mark this task complete</a></li>
+  <li><%= "#{todo.name}" %></li>
   <% end %>
+  <h2>Ready to mark something <a href="/todos">completed</a>?</h2>
   <h2><a href="/todos/new">Create</a> a new task for your to-do list.</h2>
 <% else %>
   <h2>Please <a href="/login">Log In</a> or <a href="/signup">Sign Up</a>.</h2>
