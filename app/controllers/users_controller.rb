@@ -1,10 +1,5 @@
 class UsersController < ApplicationController
 
-  get '/users/:slug' do
-    @user = User.find_by_slug(params[:slug])
-    erb :'/users/show'
-  end
-
   get '/signup' do
     erb :'/users/create_user'
   end
@@ -30,7 +25,7 @@ class UsersController < ApplicationController
 
   post '/login' do
     user = User.find_by(:username => params[:username])
-    
+
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect to "/"
@@ -42,7 +37,7 @@ class UsersController < ApplicationController
   get '/logout' do
     if logged_in?
       session.destroy
-      redirect to '/login'
+      redirect to '/'
     else
       redirect to '/'
     end
