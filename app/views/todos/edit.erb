@@ -3,20 +3,12 @@
   <a href="/logout">Logout</a>
 </nav>
 <br></br>
-<h1>Edit your To Do List:</h1>
+<h1>Mark this task complete!</h1>
 <br></br>
-<form action="/todos" method="post">
-  <input type=“hidden” name=“_method” value=“patch”>
-  <h2>Select or Deselect from your present to-do list.<br></br>
-    Checked entries will remain on your list and unchecked items will be removed.</h2>
-
-  <% Todo.all.each do |todo| %>
-  <li><input type="checkbox" name="todo[name]" value="patch">
-  <%= todo.name %></input></li>
-  <% end %>
-  <br></br>
-  <h2>Or Create a New Entry for your To-Do List:</h2>
-  <input type="text" name="todo[name]" id="todo_name"></input>
-  <br></br>
-  <input type="submit" name="submit" value="Submit Edits">
-</form>
+  <body>
+    <%= @todo.name %>
+      <form action="/todos/<%= @todo.id %>/delete" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Mark Complete" id="delete">
+      </form>
+  </body>
