@@ -2,8 +2,8 @@ class AppointmentsController < ApplicationController
 
   get '/appointments' do
     if logged_in?
-      @appointments = Appointment.all.sort_by {|appointment| appointment.datetime}
-      erb :'/appointments/appointments'
+      @appointments = current_user.sorted_appointments
+      erb :'/index'
     else
       redirect to '/login'
     end
