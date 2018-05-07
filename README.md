@@ -1,5 +1,5 @@
 # sinatra-scheduler-app
-The Sinatara-Scheduler-App is a Sinatra web application that relies on a databsse, ActiveRecord associations, and unique user accounts that allow a user to create, edit, update, and delete appointments and to-dos. We're all busy folks and keeping our tasks organized can be key- the creation of my app hopes to simplifiy organizing these tasks making them easily identified by the user.
+The Sinatara-Scheduler-App is a Sinatra web application that relies on a database, ActiveRecord associations, and unique user accounts that allow a user to create, edit, update, and delete appointments and to-dos. We're all busy folks and keeping our tasks organized can be key- the creation of my app hopes to simplify organizing these tasks making them easily identified by the user.
 
 # Installation and Usage
 Fork and clone this repository and use the following commands to use this app:
