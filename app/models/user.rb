@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
   validates :username, :email, uniqueness: true
 
   def sorted_appointments
-    Appointment.sort_by {|appointment| appointment.datetime}
+    Appointment.all.sort_by {|appointment| appointment.datetime}
   end
 end
