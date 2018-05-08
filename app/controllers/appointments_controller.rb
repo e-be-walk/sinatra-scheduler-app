@@ -29,11 +29,15 @@ class AppointmentsController < ApplicationController
   end
 
   get '/appointments/:id' do
+    @appointment = Appointment.find_by_id(params[:id])
     if !logged_in?
       redirect '/login'
     end
-    @appointment = Appointment.find(params[:id])
-    erb :'/appointments/show_appointment'
+    if @appointment.user_id == session[:user_id]
+      erb :'/appointments/show_appointment'
+    else
+      redirect '/'
+    end
   end
 
   get '/appointments/:id/edit' do
@@ -57,14 +61,9 @@ class AppointmentsController < ApplicationController
 
   delete '/appointments/:id/delete' do
     @appointment = Appointment.find_by_id(params[:id])
-    if logged_in?
-      @appointment = Appointment.find_by_id(params[:id])
-      if @appointment.user_id == session[:user_id]
+    if logged_in? && @appointment.user_id == session[:user_id]
         @appointment.delete
         redirect to '/'
-      else
-        redirect to '/'
-      end
     else
       redirect to '/login'
     end

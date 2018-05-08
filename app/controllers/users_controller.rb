@@ -25,13 +25,13 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    user = User.find_by(:username => params[:username])
+    user = User.find_by(:username => params[:username], :email => params[:email])
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect to "/"
     else
-      flash[:message] = "We don't have that info. Want to sign up?"
+      flash[:message] = "We either don't have that info or the info you entered was incorrect. Want to sign up?"
       redirect '/signup'
     end
   end
