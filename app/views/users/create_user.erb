@@ -1,3 +1,7 @@
+<nav>
+  <a href="/">Scheduler</a>
+</nav>
+<br></br>
 <h1>Create a New User Profile:</h1>
 
 <form action="/signup" method="post">
@@ -10,6 +14,9 @@
   <br></br>
   <h2><label>Password: </label></h2>
   <input type="password" name="password" id="password">
+  <% if flash.has?(:message) %>
+  <p id="flash"><%= flash[:message] %></p>
+  <% end %>
   <br></br>
   <input type="submit" value="Sign Up">
 

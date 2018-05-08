@@ -11,6 +11,9 @@
     <br></br>
     <input type="text" name="todo[name]" id="todo_name">
     <br></br>
+    <% if flash.has?(:message) %>
+    <p id="flash"><%= flash[:message] %></p>
+    <% end %>
+    <br></br>
     <input type="submit" name="submit" value="Add Task">
   </form>
-  

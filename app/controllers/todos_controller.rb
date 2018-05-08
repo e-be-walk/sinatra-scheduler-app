@@ -17,6 +17,7 @@ class TodosController < ApplicationController
       @todo.save
       erb :'/todos/show_todos'
     else
+      flash[:message] = "There's no point in entering a blank task. You must have something to do."
       redirect '/todos/new'
     end
   end
